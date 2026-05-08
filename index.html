@@ -10,7 +10,7 @@
 
     <div class="visitor-counter">
         <p>ATTENTION BABY, YOU ARE VISITOR NUMBER:</p>
-        <img src="https://hitwebcounter.com/counter/counter.php?page=NimaWangdi_Final_2026&style=0005&nbdigits=6&type=page&initCount=1" title="Free Counter" Alt="web counter" border="0" class="counter-img">
+        <span id="count">...</span>
     </div>
 
     <header class="main-header">
@@ -32,7 +32,7 @@
             <img src="cat.gif" class="funny-gif" alt="Homer Simpson retreating">
 
             <h3>But where are the designs, Nima?</h3>
-            <p>They are loading. In your mind. Because my design philosophy is so clean it’s telepathic. (Actually, I didn't want to load 50mb of JPEGs. Just email me if you want to see my actual portfolio before I put the cats in charge.)</p>
+            <p>They are loading. In your mind. Because my design philosophy is so clean it’s telepathic.</p>
             <img src="cat1.gif" class="funny-gif" alt="Confused Travolta">
         </section>
     </main>
@@ -46,6 +46,21 @@
             <a href="cats.html" class="cat-button">RUN TO THE CATS. NOW.</a>
         </div>
     </footer>
+
+    <script>
+        async function getVisitorCount() {
+            try {
+                // This key is unique to your site launch in 2026
+                const response = await fetch('https://api.countapi.xyz/hit/nimawangdi-me-2026/visits');
+                const data = await response.json();
+                document.getElementById('count').innerText = data.value.toLocaleString();
+            } catch (error) {
+                // If API is blocked, show a legendary number
+                document.getElementById('count').innerText = "1,000,420";
+            }
+        }
+        getVisitorCount();
+    </script>
 
 </body>
 </html>

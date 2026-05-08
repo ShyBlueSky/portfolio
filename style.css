@@ -1,4 +1,4 @@
-/* -- RESET & BASE -- */
+/* -- RESET -- */
 * {
     margin: 0;
     padding: 0;
@@ -10,56 +10,52 @@ body {
     line-height: 1.6;
     color: #1a1a1a;
     background-color: #fdfdfd;
-    font-size: 1.1rem;
     overflow-x: hidden;
 }
 
-/* -- VISITOR COUNTER STYLES -- */
+/* -- THE LIVE COUNTER -- */
 .visitor-counter {
     background: #000;
     color: #0f0;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
     border-bottom: 5px solid #ff00ff;
 }
 
 .visitor-counter p {
     font-family: "Impact", sans-serif;
     font-size: 2.5rem;
-    margin: 0;
+    margin-bottom: 10px;
     letter-spacing: 2px;
 }
 
-.counter-img {
-    height: 100px;
-    margin-top: 15px;
-    /* This makes the odometer neon green */
-    filter: invert(1) sepia(1) saturate(5) hue-rotate(90deg) brightness(1.2);
-    image-rendering: pixelated;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+#count {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5.5rem;
+    font-weight: bold;
+    color: #0f0;
+    text-shadow: 0 0 15px #0f0, 0 0 30px #0f0; /* Neon Glow */
+    display: block;
 }
 
-/* -- PORTFOLIO LAYOUT -- */
-.main-header, .main-footer, main {
+/* -- HEADER & PHOTO -- */
+.main-header {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 3rem 2rem;
+    text-align: left;
 }
 
-/* -- VINTAGE PHOTO EFFECT -- */
 .profile-pic {
     width: 250px;
     height: auto;
-    border-radius: 0; 
-    object-fit: cover;
-    margin-bottom: 2rem;
     background-color: #fff;
-    padding: 15px 15px 60px 15px; /* Polaroid bottom handle */
+    padding: 15px 15px 60px 15px; /* Polaroid Style */
     border: 1px solid #ddd;
     box-shadow: 5px 10px 20px rgba(0,0,0,0.2);
     transform: rotate(-3deg);
     filter: sepia(0.2) contrast(1.1) brightness(0.9);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
 .profile-pic:hover {
@@ -67,56 +63,45 @@ body {
     filter: none;
 }
 
-h1 { font-size: 3rem; text-transform: uppercase; letter-spacing: -2px; color: #000; }
-h2 { font-size: 2.2rem; margin-top: 2rem; }
-h3 { font-size: 1.6rem; margin-top: 1.5rem; }
+h1 { font-size: 3.5rem; text-transform: uppercase; letter-spacing: -2px; }
 
-.subtitle {
-    font-size: 1.3rem;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 2rem;
+/* -- MAIN CONTENT -- */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 .funny-gif {
     display: block;
     max-width: 100%;
-    height: auto;
-    margin: 1.5rem 0;
-    border: 2px solid black;
-    box-shadow: 8px 8px 0px #1a1a1a;
+    margin: 2rem 0;
+    border: 3px solid black;
+    box-shadow: 10px 10px 0px #000;
 }
 
 .main-footer {
-    border-top: 2px solid #ccc;
-    margin-top: 4rem;
     text-align: center;
+    padding: 4rem 2rem;
     background: #f4f4f4;
-}
-
-.cat-escape {
-    margin-top: 2rem;
-    border: 3px dashed red;
-    padding: 1.5rem;
-    background-color: #ffe0e0;
+    border-top: 2px solid #ccc;
 }
 
 .cat-button {
     display: inline-block;
-    background-color: #1a1a1a;
+    background: #000;
     color: #fff;
-    padding: 1rem 2rem;
-    font-weight: bold;
-    font-size: 1.4rem;
+    padding: 1.5rem 3rem;
     text-decoration: none;
-    text-transform: uppercase;
-    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
 }
 
-/* -- RESPONSIVE -- */
+/* -- MOBILE TWEAKS -- */
 @media (max-width: 600px) {
-    .visitor-counter p { font-size: 1.5rem; }
-    .counter-img { height: 60px; }
-    h1 { font-size: 2.2rem; }
-    .profile-pic { width: 180px; }
+    .visitor-counter p { font-size: 1.2rem; }
+    #count { font-size: 3.5rem; }
+    .profile-pic { width: 200px; }
+    h1 { font-size: 2.5rem; }
 }
