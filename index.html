@@ -1,122 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Space | Chill Vibes</title>
-    <style>
-        /* Trippy Animated Background */
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e, #6a11cb, #2575fc);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: white;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nima Wangdi — Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0f0f1a;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    #app {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #0f0f1a;
+    }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* ── Stars background ── */
+    .stars {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 8%  12%, #fff 0%, transparent 100%),
+        radial-gradient(1px   1px   at 22% 38%, #aaa 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 48%  8%, #fff 0%, transparent 100%),
+        radial-gradient(1px   1px   at 68% 28%, #ccc 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 83% 18%, #fff 0%, transparent 100%),
+        radial-gradient(1px   1px   at 38% 58%, #aaa 0%, transparent 100%),
+        radial-gradient(1px   1px   at 88% 68%, #ddd 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 13% 78%, #fff 0%, transparent 100%),
+        radial-gradient(1px   1px   at 58% 83%, #bbb 0%, transparent 100%),
+        radial-gradient(1px   1px   at 30% 52%, #999 0%, transparent 100%),
+        radial-gradient(1px   1px   at 75% 55%, #ccc 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 55% 35%, #fff 0%, transparent 100%),
+        radial-gradient(1px   1px   at 92% 42%, #aaa 0%, transparent 100%),
+        radial-gradient(1px   1px   at 5%  60%, #bbb 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        /* Glassmorphism Container */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 3rem;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            margin: 20px;
-        }
+    /* ── Ground glow ── */
+    .ground {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 160px;
+      background: linear-gradient(to top, #1a0a3a 0%, transparent 100%);
+      z-index: 1;
+    }
+    .ground-line {
+      position: absolute;
+      bottom: 64px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #7c3aed, #a855f7, #7c3aed, transparent);
+      z-index: 2;
+    }
 
-        /* Responsive Image */
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.5);
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 10px rgba(106, 17, 203, 0.8));
-        }
+    /* ── Footer ── */
+    .footer {
+      position: absolute;
+      bottom: 14px;
+      width: 100%;
+      text-align: center;
+      font-size: 11px;
+      color: #6b5b8a;
+      z-index: 5;
+      letter-spacing: 0.5px;
+    }
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+    .footer-icon {
+      width: 28px; height: 28px;
+      background: rgba(124,58,237,0.25);
+      border: 1px solid rgba(168,85,247,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #c084fc; font-size: 13px; cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-icon:hover { background: rgba(124,58,237,0.5); color: #f0abfc; }
 
-        h1 {
-            font-size: 2.5rem;
-            margin: 10px 0;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #fff, #a29bfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* ── Top controls ── */
+    .top-controls {
+      position: absolute;
+      top: 16px; left: 18px;
+      display: flex; gap: 14px;
+      z-index: 20;
+      font-size: 16px;
+      cursor: pointer;
+      color: #a78bfa;
+      user-select: none;
+    }
+    .top-controls span:hover { color: #e879f9; }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
+    /* ── Mascots ── */
+    .mascot {
+      position: absolute;
+      bottom: 68px; right: 24px;
+      font-size: 38px;
+      z-index: 10;
+      line-height: 1;
+      filter: drop-shadow(0 0 10px #a855f7);
+      animation: float 3s ease-in-out infinite;
+    }
+    .star-mascot {
+      position: absolute;
+      top: 56px; left: 56px;
+      font-size: 34px;
+      z-index: 10;
+      animation: float 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px #f59e0b);
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-9px); }
+    }
 
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
+    /* ══════════════════════════════
+       WINDOWS
+    ══════════════════════════════ */
+    .win {
+      position: absolute;
+      background: rgba(10, 6, 25, 0.97);
+      border: 1px solid rgba(168,85,247,0.5);
+      border-radius: 12px;
+      box-shadow: 0 0 32px rgba(124,58,237,0.3), 0 10px 36px rgba(0,0,0,0.65);
+      overflow: hidden;
+      z-index: 30;
+      display: none;
+      min-width: 280px;
+    }
+    .win.visible { display: block; }
 
-        .skill-chip {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
+    .win-bar {
+      background: rgba(124,58,237,0.28);
+      border-bottom: 1px solid rgba(168,85,247,0.35);
+      color: #e2d9f3;
+      padding: 9px 14px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.5px;
+    }
+    .win-close {
+      cursor: pointer;
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      color: #c084fc;
+      background: none; border: none; padding: 0;
+      transition: color 0.15s;
+    }
+    .win-close:hover { color: #f0abfc; }
 
-        .skill-chip:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
+    .win-body {
+      padding: 20px 22px;
+      max-height: 70vh;
+      overflow-y: auto;
+      font-size: 13px;
+      color: #c4b5d4;
+      line-height: 1.65;
+      scrollbar-width: thin;
+      scrollbar-color: #7c3aed #1a0a3a;
+    }
+    .win-body::-webkit-scrollbar { width: 5px; }
+    .win-body::-webkit-scrollbar-track { background: #1a0a3a; }
+    .win-body::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 4px; }
 
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .glass-card { padding: 1.5rem; }
-            h1 { font-size: 1.8rem; }
-        }
-    </style>
+    /* ── HOME ── */
+    #win-home {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      width: min(520px, 92vw);
+    }
+    .home-body {
+      text-align: center;
+      padding: 38px 28px 30px;
+    }
+    .home-body h1 {
+      font-size: 30px; font-weight: 300; color: #e2d9f3; margin-bottom: 7px;
+      letter-spacing: 1px;
+    }
+    .home-body h1 span {
+      color: #a855f7; font-weight: 700;
+      text-shadow: 0 0 22px rgba(168,85,247,0.65);
+    }
+    .home-body .tagline {
+      font-size: 13px; color: #7c6a9a; margin-bottom: 30px; letter-spacing: 0.5px;
+    }
+    .nav-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 7px; cursor: pointer;
+    }
+    .icon-circle {
+      width: 56px; height: 56px;
+      border: 1.5px solid rgba(168,85,247,0.45);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      transition: all 0.2s;
+      background: rgba(124,58,237,0.1);
+      color: #a855f7;
+    }
+    .nav-item:hover .icon-circle {
+      border-color: #a855f7;
+      background: rgba(124,58,237,0.28);
+      box-shadow: 0 0 16px rgba(168,85,247,0.45);
+      color: #e879f9;
+    }
+    .nav-item span { font-size: 11px; font-weight: 600; color: #7c6a9a; letter-spacing: 0.4px; }
+    .nav-item:hover span { color: #c084fc; }
+
+    /* ── Shared helpers ── */
+    .divider { height: 1px; background: rgba(168,85,247,0.2); margin: 14px 0; }
+    .label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      color: #7c3aed; text-transform: uppercase; margin: 12px 0 6px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    .tag {
+      border: 1px solid rgba(168,85,247,0.35);
+      border-radius: 20px;
+      padding: 3px 10px; font-size: 11px; color: #a78bfa;
+      background: rgba(124,58,237,0.1);
+    }
+
+    /* ── ABOUT ── */
+    #win-about { top: 12vh; left: 50%; transform: translateX(-55%); width: min(480px, 90vw); }
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(124,58,237,0.25);
+      border: 2px solid rgba(168,85,247,0.6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700; color: #c084fc;
+      flex-shrink: 0;
+      box-shadow: 0 0 18px rgba(168,85,247,0.3);
+    }
+    .about-name { font-size: 20px; font-weight: 700; color: #a855f7; margin-bottom: 3px;
+      text-shadow: 0 0 14px rgba(168,85,247,0.5); }
+    .about-sub { font-size: 12px; color: #7c6a9a; line-height: 1.5; }
+    .about-sub a { color: #c084fc; text-decoration: none; }
+
+    /* ── EXPERIENCE ── */
+    #win-exp { top: 10vh; left: 50%; transform: translateX(-45%); width: min(500px, 92vw); }
+    .exp-item { margin-bottom: 18px; }
+    .exp-title { font-size: 13px; font-weight: 700; color: #c084fc; margin-bottom: 2px; }
+    .exp-company { font-size: 11px; color: #7c3aed; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.4px; }
+    .exp-item ul { padding-left: 16px; }
+    .exp-item ul li { font-size: 12px; color: #9d8bb0; margin-bottom: 3px; }
+
+    /* ── PROJECTS ── */
+    #win-proj { top: 8vh; left: 50%; transform: translateX(-35%); width: min(500px, 92vw); }
+    .proj-item {
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 8px; padding: 12px 14px;
+      margin-bottom: 10px;
+      background: rgba(124,58,237,0.05);
+      transition: border-color 0.2s;
+    }
+    .proj-item:hover { border-color: rgba(168,85,247,0.5); }
+    .proj-title { font-size: 13px; font-weight: 700; color: #c084fc; margin-bottom: 2px; }
+    .proj-org { font-size: 10px; color: #7c3aed; font-weight: 600; letter-spacing: 0.4px; margin-bottom: 4px; }
+    .proj-desc { font-size: 12px; color: #8b7aa0; line-height: 1.5; }
+
+    /* ── CERTS ── */
+    #win-certs { top: 10vh; left: 50%; transform: translateX(-42%); width: min(480px, 92vw); }
+    .cert-item {
+      border-left: 2px solid #7c3aed;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      background: rgba(124,58,237,0.05);
+      border-radius: 0 6px 6px 0;
+    }
+    .cert-title { font-size: 12px; color: #c084fc; font-weight: 700; margin-bottom: 2px; }
+    .cert-desc { font-size: 11px; color: #7c6a9a; line-height: 1.5; }
+
+    /* ── FAQ ── */
+    #win-faq { top: 10vh; left: 50%; transform: translateX(-38%); width: min(460px, 90vw); }
+    .faq-item {
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 8px; padding: 11px 14px;
+      margin-bottom: 7px; cursor: pointer;
+      font-family: 'Courier New', monospace; font-size: 12px;
+      color: #a78bfa;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: all 0.15s;
+    }
+    .faq-item:hover { background: rgba(124,58,237,0.2); border-color: rgba(168,85,247,0.5); }
+    .faq-answer {
+      background: rgba(10,6,25,0.7); border-radius: 0 0 8px 8px; padding: 10px 14px;
+      font-size: 12px; color: #7c6a9a; margin-top: -5px; margin-bottom: 7px;
+      border: 1px solid rgba(168,85,247,0.15); border-top: none;
+      display: none;
+    }
+    .faq-answer.open { display: block; }
+
+    /* ── CONTACT ── */
+    #win-contact { top: 10vh; left: 50%; transform: translateX(-28%); width: min(380px, 90vw); }
+    .contact-body { text-align: center; }
+    .contact-body h2 {
+      font-family: 'Courier New', monospace;
+      font-size: 18px; font-weight: 700; color: #c084fc; margin-bottom: 8px;
+      text-shadow: 0 0 12px rgba(192,132,252,0.4);
+    }
+    .contact-body p { font-size: 12px; color: #7c6a9a; margin-bottom: 16px; line-height: 1.6; }
+    .contact-emoji { font-size: 52px; margin-bottom: 14px; display: block; filter: drop-shadow(0 0 12px #a855f7); }
+    .contact-detail { font-size: 12px; color: #9d8bb0; margin-bottom: 4px; }
+    .contact-detail a { color: #a855f7; text-decoration: none; }
+    .social-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; justify-content: center; }
+    .social-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 8px; padding: 6px 12px;
+      font-size: 12px; color: #a78bfa; cursor: pointer;
+      text-decoration: none; transition: all 0.15s;
+    }
+    .social-btn:hover { background: rgba(124,58,237,0.3); color: #e879f9; border-color: #a855f7; }
+    .contact-btn {
+      display: inline-block; margin-top: 14px;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: white; border: none; border-radius: 8px;
+      padding: 10px 24px; font-size: 13px; font-weight: 700;
+      cursor: pointer; font-family: 'Courier New', monospace;
+      letter-spacing: 0.5px; text-decoration: none;
+      box-shadow: 0 0 18px rgba(168,85,247,0.4);
+      transition: all 0.2s;
+    }
+    .contact-btn:hover { box-shadow: 0 0 28px rgba(168,85,247,0.75); transform: translateY(-2px); }
+
+    /* ── Draggable ── */
+    .win-bar { cursor: grab; }
+    .win-bar:active { cursor: grabbing; }
+  </style>
 </head>
 <body>
+<div id="app">
+  <div class="stars"></div>
+  <div class="ground"></div>
+  <div class="ground-line"></div>
 
-    <div class="glass-card">
-        <!-- Make sure your file is still named cat.png or change this to your picture name -->
-        <img src="cat.png" alt="Creator" class="profile-pic">
-        
-        <h1>Nima</h1>
-        <p>Building digital experiences at the intersection of design and code. Just hanging out in the cloud.</p>
-        
-        <div class="skills">
-            <div class="skill-chip">UI/UX</div>
-            <div class="skill-chip">Flutter</div>
-            <div class="skill-chip">MERN</div>
-            <div class="skill-chip">Motion Design</div>
-        </div>
+  <div class="top-controls">
+    <span title="toggle theme">✦</span>
+    <span title="toggle sound">♪</span>
+  </div>
 
-        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.6;">
-            Scroll slowly. Stay chill.
-        </p>
+  <div class="star-mascot">✦</div>
+  <div class="mascot">🔮</div>
+
+  <div class="footer">
+    <div class="footer-icons">
+      <a class="footer-icon" href="https://github.com/" target="_blank" title="GitHub"><i class="ti ti-brand-github"></i></a>
+      <a class="footer-icon" href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+      <a class="footer-icon" href="https://instagram.com/" target="_blank" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
     </div>
+    © 2025 Nima Wangdi
+  </div>
 
+  <!-- ══ HOME ══ -->
+  <div class="win visible" id="win-home">
+    <div class="win-bar" onmousedown="startDrag(event,'win-home')">home</div>
+    <div class="home-body">
+      <h1>hi! <span>i'm nima</span></h1>
+      <p class="tagline">graphic designer · ui/ux designer · gcit, bhutan 🇧🇹</p>
+      <div class="nav-icons">
+        <div class="nav-item" onclick="openWin('about')">
+          <div class="icon-circle"><i class="ti ti-user"></i></div>
+          <span>about</span>
+        </div>
+        <div class="nav-item" onclick="openWin('exp')">
+          <div class="icon-circle"><i class="ti ti-briefcase"></i></div>
+          <span>experience</span>
+        </div>
+        <div class="nav-item" onclick="openWin('proj')">
+          <div class="icon-circle"><i class="ti ti-folder"></i></div>
+          <span>projects</span>
+        </div>
+        <div class="nav-item" onclick="openWin('certs')">
+          <div class="icon-circle"><i class="ti ti-certificate"></i></div>
+          <span>certs</span>
+        </div>
+        <div class="nav-item" onclick="openWin('faq')">
+          <div class="icon-circle"><i class="ti ti-help"></i></div>
+          <span>faq</span>
+        </div>
+        <div class="nav-item" onclick="openWin('contact')">
+          <div class="icon-circle"><i class="ti ti-mail"></i></div>
+          <span>contact</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ABOUT ══ -->
+  <div class="win" id="win-about">
+    <div class="win-bar" onmousedown="startDrag(event,'win-about')">
+      about.txt
+      <button class="win-close" onclick="closeWin('about')">[x]</button>
+    </div>
+    <div class="win-body">
+      <div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:14px;">
+        <div class="avatar">NW</div>
+        <div>
+          <div class="about-name">Nima Wangdi</div>
+          <div class="about-sub">
+            Graphic Designer · UI/UX Designer<br>
+            Studying at <a href="https://gcit.edu.bt" target="_blank">GCIT</a> · Thimphu, Bhutan 🇧🇹<br>
+            📞 +975 17719419 · 🌐 <a href="http://www.misty.com" target="_blank">www.misty.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;color:#9d8bb0;">a graphic designer who thrives on creating bold, unfiltered visuals that challenge norms. i embrace a DIY aesthetic that brings ideas to life in the most authentic way possible — crafting designs that provoke thought and push boundaries.</p>
+      <div class="label">professional skills</div>
+      <div class="tag-row">
+        <span class="tag">UI/UX Design</span>
+        <span class="tag">Graphic Design</span>
+        <span class="tag">Game Development</span>
+        <span class="tag">Videography</span>
+        <span class="tag">Full-stack Dev</span>
+        <span class="tag">VFX / 3D Animation</span>
+      </div>
+      <div class="label">design tools</div>
+      <div class="tag-row">
+        <span class="tag">Figma</span>
+        <span class="tag">Adobe XD</span>
+        <span class="tag">Photoshop</span>
+        <span class="tag">Illustrator</span>
+        <span class="tag">Premiere Pro</span>
+        <span class="tag">After Effects</span>
+        <span class="tag">Blender</span>
+        <span class="tag">Unity</span>
+      </div>
+      <div class="label">dev stack</div>
+      <div class="tag-row">
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">React</span>
+        <span class="tag">Next.js</span>
+        <span class="tag">Dart/Flutter</span>
+        <span class="tag">Git</span>
+        <span class="tag">Python</span>
+      </div>
+      <div class="label">soft skills</div>
+      <div class="tag-row">
+        <span class="tag">Effective Communication</span>
+        <span class="tag">Adaptable</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">Creative</span>
+      </div>
+      <div class="label">languages</div>
+      <div class="tag-row">
+        <span class="tag">English (Fluent)</span>
+        <span class="tag">Dzongkhag (Fluent)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ EXPERIENCE ══ -->
+  <div class="win" id="win-exp">
+    <div class="win-bar" onmousedown="startDrag(event,'win-exp')">
+      experience.log
+      <button class="win-close" onclick="closeWin('exp')">[x]</button>
+    </div>
+    <div class="win-body">
+      <div class="exp-item">
+        <div class="exp-title">Head of Design &amp; Marketing</div>
+        <div class="exp-company">NoMindBhutan · AI &amp; Development Company · 2022 – Present</div>
+        <ul>
+          <li>Led design and marketing efforts for AI-based products &amp; services</li>
+          <li>Created branding and visual content that improved user engagement</li>
+          <li>Worked with developers to design user-friendly interfaces for AI tools</li>
+          <li>Ran online campaigns that boosted brand awareness and reach</li>
+          <li>Helped shape product ideas through design thinking and user feedback</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="exp-item">
+        <div class="exp-title">Design Lead &amp; Founding Member</div>
+        <div class="exp-company">Nopay · Fintech · 2024 – Present</div>
+        <ul>
+          <li>Designed the brand identity and user interface from the ground up</li>
+          <li>Led the design of a seamless cross-border payment experience</li>
+          <li>Turned complex payment flows into simple user journeys</li>
+          <li>Focused on user research and feedback to improve design &amp; usability</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="label">education</div>
+      <div class="exp-item" style="margin-top:10px;">
+        <div class="exp-title">Bachelor of Interactive Design &amp; Development</div>
+        <div class="exp-company">Gyalpozhing College of Information Technology (GCIT) · 2022 – 2026</div>
+        <ul>
+          <li>UI/UX Design · Web Development · Game Development</li>
+          <li>Agile Practices · Data Analytics · Research Methods</li>
+          <li>Mobile UI/UX Design · Advanced Videography · Tech Venture</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-title">Class 9–12 | General Studies with Media &amp; IT</div>
+        <div class="exp-company">Gongzim Ugyen Dorji Central School · 2018 – 2021</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECTS ══ -->
+  <div class="win" id="win-proj">
+    <div class="win-bar" onmousedown="startDrag(event,'win-proj')">
+      projects/
+      <button class="win-close" onclick="closeWin('proj')">[x]</button>
+    </div>
+    <div class="win-body">
+      <div class="proj-item">
+        <div class="proj-title">🏆 TashiLa Chatbot — Hackathon Winner</div>
+        <div class="proj-org">G-Tech &amp; GCIT Hackathon · Team Debug Thugs</div>
+        <div class="proj-desc">Customer service chatbot winning the TashiCell Technology category and advancing to the GCIT Hackathon final stage.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">EV Taxi System — UI/UX Design</div>
+        <div class="proj-org">Second Year Project · Figma</div>
+        <div class="proj-desc">Figma-based EV taxi booking system improving user experience and efficiency for Bhutanese commuters.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">Semthuen — Online Dating Platform</div>
+        <div class="proj-org">Third Year Project · Agile/Scrum Team of 4</div>
+        <div class="proj-desc">Web-based dating app with matching algorithms, search/filter functions, and profile management built using Scrum framework.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">Chatterbox — Mobile Chat App</div>
+        <div class="proj-org">Third Year · Dart &amp; Flutter</div>
+        <div class="proj-desc">Simplified messaging chat application built with Dart &amp; Flutter for a clean mobile experience.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">UOB Travel Insurance Redesign</div>
+        <div class="proj-org">United Overseas Bank · Sep–Oct 2024</div>
+        <div class="proj-desc">Redesigned travel insurance page for a Singapore-based bank focusing on improved UX and accessibility.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">Bhutan Agrifood Trade &amp; Investment Forum</div>
+        <div class="proj-org">NoMindBhutan · May 11–19, 2024</div>
+        <div class="proj-desc">Designed and developed website for the annual trade and investment forum, facilitating seamless information sharing and event engagement.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">Bubble Blaster &amp; Infinite Life — Games</div>
+        <div class="proj-org">Academic · JavaScript &amp; Pixel Art</div>
+        <div class="proj-desc">JavaScript arcade game + pixel-game marketplace. Also developed Hutaw Simps in Unity — published on Google Play Store.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">DrukAir Flight Database System</div>
+        <div class="proj-org">Second Year Project</div>
+        <div class="proj-desc">Designed and implemented a database system for managing DrukAir airline flights.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">Dre Tri Tho Kha — Restaurant Booking</div>
+        <div class="proj-org">Academic Project</div>
+        <div class="proj-desc">Restaurant table booking website allowing users to reserve seats at various Bhutanese restaurants.</div>
+      </div>
+      <div class="proj-item">
+        <div class="proj-title">Cryptocurrency &amp; Financial Stress Research</div>
+        <div class="proj-org">Third Year Research Project</div>
+        <div class="proj-desc">Conducted a study on the relationship between cryptocurrency involvement and financial stress among students.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CERTS ══ -->
+  <div class="win" id="win-certs">
+    <div class="win-bar" onmousedown="startDrag(event,'win-certs')">
+      certificates.txt
+      <button class="win-close" onclick="closeWin('certs')">[x]</button>
+    </div>
+    <div class="win-body">
+      <div class="cert-item">
+        <div class="cert-title">🏆 GCIT &amp; TashiCell Hack! 2022 — Industry Award Winner</div>
+        <div class="cert-desc">Certificate of Achievement for winning the Industry Award at the GCIT and TashiCell Hackathon.</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">🥈 Hackathon on Database Management — Runner-Up</div>
+        <div class="cert-desc">Outstanding digital skills as runner-up · Legal Aid Center · August 9–11, 2024</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">🇧🇹 National Competition — From Pixel to Fabrics</div>
+        <div class="cert-desc">Shortlisted for "Digital Design in Traditional Weaving" · Thimphu, December 2023 – March 2024</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">💡 Bhutan New Venture Challenge 2023</div>
+        <div class="cert-desc">Presented business idea "Needle" in the student category — theme: Sustainable Ventures for a Sustainable Tomorrow.</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">🎨 Tarayana Club Poster Design Competition</div>
+        <div class="cert-desc">Certificate of Appreciation for participating in poster design · Earth Hour, March 23, 2024</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-title">🌍 UNESCO Club — ASPnet Member</div>
+        <div class="cert-desc">Certificate of Merit for contributions as a member of the Associated Schools Network · 2018</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FAQ ══ -->
+  <div class="win" id="win-faq">
+    <div class="win-bar" onmousedown="startDrag(event,'win-faq')">
+      faq.md
+      <button class="win-close" onclick="closeWin('faq')">[x]</button>
+    </div>
+    <div class="win-body">
+      <div class="faq-item" onclick="toggleFaq(this)">what do you study? <span>∨</span></div>
+      <div class="faq-answer">Bachelor of Interactive Design &amp; Development at GCIT, Bhutan (2022–2026). Covering UI/UX, web dev, game dev, agile, research, and more.</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">what tools do you use? <span>∨</span></div>
+      <div class="faq-answer">Design: Figma, Adobe XD, Photoshop, Illustrator, After Effects, Blender. Dev: HTML/CSS, JS, React, Next.js, Flutter/Dart, Unity, Git, Python.</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">are you open to work? <span>∨</span></div>
+      <div class="faq-answer">yes! i'm currently Head of Design at NoMindBhutan and a founding member at Nopay. always open to freelance and collaboration too!</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">where are you based? <span>∨</span></div>
+      <div class="faq-answer">thimphu, bhutan 🇧🇹 — but open to remote opportunities globally!</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">what's your design philosophy? <span>∨</span></div>
+      <div class="faq-answer">bold, unfiltered, authentic. i reject perfectionism for raw creativity — designs that provoke thought, push boundaries, and stay true to an idea.</div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">can we collaborate? <span>∨</span></div>
+      <div class="faq-answer">absolutely! reach out via email at Misty@gmail.com — i'm always down for exciting projects in design, dev, or anything creative.</div>
+    </div>
+  </div>
+
+  <!-- ══ CONTACT ══ -->
+  <div class="win" id="win-contact">
+    <div class="win-bar" onmousedown="startDrag(event,'win-contact')">
+      contact.msg
+      <button class="win-close" onclick="closeWin('contact')">[x]</button>
+    </div>
+    <div class="win-body contact-body">
+      <h2>let's connect!</h2>
+      <p>reach me via email or find me on socials. always open to new projects, collabs, or just a good conversation!</p>
+      <span class="contact-emoji">✉️</span>
+      <div class="contact-detail">📞 +975 17719419</div>
+      <div class="contact-detail">📧 <a href="mailto:Misty@gmail.com">Misty@gmail.com</a></div>
+      <div class="contact-detail">🌐 <a href="http://www.misty.com" target="_blank">www.misty.com</a></div>
+      <div class="contact-detail" style="margin-top:4px;">📍 Thimphu, Bhutan</div>
+      <div class="social-row">
+        <a class="social-btn" href="https://github.com/" target="_blank"><i class="ti ti-brand-github"></i> github</a>
+        <a class="social-btn" href="https://linkedin.com/" target="_blank"><i class="ti ti-brand-linkedin"></i> linkedin</a>
+        <a class="social-btn" href="https://instagram.com/" target="_blank"><i class="ti ti-brand-instagram"></i> instagram</a>
+      </div>
+      <a class="contact-btn" href="mailto:Misty@gmail.com">send me an email!</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Open / Close ── */
+  function openWin(id) {
+    const el = document.getElementById('win-' + id);
+    el.classList.add('visible');
+    bringToFront(el);
+  }
+  function closeWin(id) {
+    document.getElementById('win-' + id).classList.remove('visible');
+  }
+
+  /* ── FAQ toggle ── */
+  function toggleFaq(el) {
+    const ans = el.nextElementSibling;
+    ans.classList.toggle('open');
+    el.querySelector('span').textContent = ans.classList.contains('open') ? '∧' : '∨';
+  }
+
+  /* ── Z-index management ── */
+  let zTop = 40;
+  function bringToFront(el) {
+    zTop++;
+    el.style.zIndex = zTop;
+  }
+
+  /* ── Draggable windows ── */
+  function startDrag(e, id) {
+    const win = document.getElementById(id);
+    bringToFront(win);
+    const startX = e.clientX - win.offsetLeft;
+    const startY = e.clientY - win.offsetTop;
+    win.style.transform = 'none';
+
+    function onMove(e) {
+      let x = e.clientX - startX;
+      let y = e.clientY - startY;
+      // keep inside viewport
+      x = Math.max(0, Math.min(window.innerWidth  - win.offsetWidth,  x));
+      y = Math.max(0, Math.min(window.innerHeight - win.offsetHeight, y));
+      win.style.left = x + 'px';
+      win.style.top  = y + 'px';
+    }
+    function onUp() {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup',   onUp);
+    }
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
+  }
+
+  /* click window to bring to front */
+  document.querySelectorAll('.win').forEach(w => {
+    w.addEventListener('mousedown', () => bringToFront(w));
+  });
+</script>
 </body>
 </html>
