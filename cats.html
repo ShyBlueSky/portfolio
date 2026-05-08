@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT CHAOS!!! - Nima Wangdi</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Special styles just for the Cat Page */
+        body {
+            background-color: #ff00ff; /* Maximum retina burn */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Keep the chaos contained */
+        }
+        
+        h1 {
+            color: white;
+            font-size: 4rem;
+            text-shadow: 3px 3px 0 #00ffff;
+            animation: blinker 0.5s linear infinite;
+        }
+
+        .cat-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; /* Let clicks pass through if needed */
+        }
+
+        .cat-container img {
+            position: absolute;
+            max-width: 150px;
+            animation: flyAround 8s linear infinite;
+        }
+
+        /* Generate different animation delays for varied cats */
+        .cat-container img:nth-child(1)  { animation-delay: 0s;  top: 10%; left: 10%; }
+        .cat-container img:nth-child(2)  { animation-delay: 1s;  top: 50%; left: 80%; }
+        .cat-container img:nth-child(3)  { animation-delay: 2s;  top: 20%; left: 60%; }
+        .cat-container img:nth-child(4)  { animation-delay: 3s;  top: 70%; left: 20%; }
+        .cat-container img:nth-child(5)  { animation-delay: 4s;  top: 5%;  left: 40%; }
+        .cat-container img:nth-child(6)  { animation-delay: 5s;  top: 80%; left: 50%; }
+        .cat-container img:nth-child(7)  { animation-delay: 6s;  top: 30%; left: 5%; }
+        .cat-container img:nth-child(8)  { animation-delay: 7s;  top: 60%; left: 90%; }
+
+        @keyframes blinker {  50% { opacity: 0; } }
+        
+        @keyframes flyAround {
+            0%   { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+            25%  { transform: translate(20vw, 30vh) scale(1.5) rotate(90deg); }
+            50%  { transform: translate(-10vw, 50vh) scale(0.8) rotate(180deg); opacity: 0.8; }
+            75%  { transform: translate(10vw, -10vh) scale(1.2) rotate(270deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 1; }
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 2rem;
+            color: #00ffff;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 1.5rem;
+            z-index: 100;
+            position: relative;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>CAT CHAOS</h1>
+
+    <div class="cat-container">
+        <img src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif" alt="Flying cat">
+        <img src="https://media.giphy.com/media/VbnU5mZasgP1Qv92s5/giphy.gif" alt="Ninja cat">
+        <img src="https://media.giphy.com/media/C5oD3WouD4Mh2/giphy.gif" alt="Excited cat">
+        <img src="https://media.giphy.com/media/l1KvgjH7iG4kI1H2Y/giphy.gif" alt="Paws flashing">
+        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Kitten surprise">
+        <img src="https://media.giphy.com/media/VxbvpfaTTo3le/giphy.gif" alt="Keyboard cat">
+        <img src="https://media.giphy.com/media/A6aHBCFql6G7m/giphy.gif" alt="Laser cat">
+        <img src="https://media.giphy.com/media/13Zm0rR2aT3C92/giphy.gif" alt="Surprised cat">
+    </div>
+
+    <a href="index.html" class="back-link">Return to Sanity.</a>
+
+</body>
+</html>
